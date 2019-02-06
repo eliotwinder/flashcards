@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  def index
-    @decks = Deck.all
-  end
+    def index
+        @decks = Deck.all
+    end
 end

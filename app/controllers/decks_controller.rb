@@ -3,9 +3,8 @@ class DecksController < ApplicationController
     end
 
     def create
-        @deck = Deck.new(deck_params)
-        @deck.save
-        redirect_to @deck
+        Deck.create(deck_params)
+        redirect_to root_path
     end
 
     def new
@@ -13,6 +12,12 @@ class DecksController < ApplicationController
 
     def show
         @deck = Deck.find(params[:id])
+    end
+
+    def destroy
+        @deck = Deck.find(params[:id])
+        @deck.destroy
+        redirect_to root_path
     end
 
     def study

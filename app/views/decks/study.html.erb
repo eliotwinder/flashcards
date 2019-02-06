@@ -1,7 +1,7 @@
 <p>Study</p>
-<p onclick="nextCard(this)">next card</p>
+<p class='next' onclick="nextCard(this)">next card</p>
 
-<% @deck.cards.each do |card, index| %>
+<% @deck.cards.shuffle.each do |card, index| %>
     <div class='card' hidden=true>
         <div class='front'>
         Front: <%= card.front %>
@@ -15,5 +15,10 @@
     </div>
 <% end %>
 
+<div class="finished" hidden=true>
+    All finished!
+    <div onclick="startOver(this)">Study more</div>
+</div>
+<div><%= link_to 'Go back to deck', deck_path(@deck) %></div>
 <%= content_tag :div, '', id: 'jsVariables', data: { deckLength: @deckLength } %>
 

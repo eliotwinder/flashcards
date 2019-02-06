@@ -1,7 +1,14 @@
 <h1>So ya wanna learn something?!</h1>
 <%= link_to 'New Deck', new_deck_path %>
 <h2>Saved decks:</h2>
-<% @decks.each do |deck| %>
-    <p><%= link_to deck.title, deck_path(deck) %></p>
-<% end %>
+<table>
+    <% @decks.each do |deck| %>
+        <tr>
+            <td><%= link_to deck.title, deck_path(deck) %></td>
+            <td><%= link_to 'Destroy', deck_path(deck.id),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+        </tr>
+    <% end %>
+</table>
 

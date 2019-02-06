@@ -1,0 +1,17 @@
+<div>Edit card</div>
+
+<%= form_with(model: @card, url: deck_card_path(@deck_id, @card), local: true) do |form| %>
+    <p>
+        <%= form.label :front %><br>
+        <%= form.text_field :front %>
+    </p>
+
+    <p>
+        <%= form.label :back %><br>
+        <%= form.text_area :back %>
+    </p>
+
+    <p>
+        <%= form.submit %>
+    </p>
+<% end %>

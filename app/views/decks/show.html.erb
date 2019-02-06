@@ -1,18 +1,8 @@
+
 <p><%= @deck.title %></p>
+<%= link_to 'Study', deck_study_path(@deck) %>
 
-<%= form_with(model: [ @deck, @deck.cards.build ], local: true) do |form| %>
-  <p>
-    <%= form.label :front %>:
-    <%= form.text_field :front %>
-    <%= form.label :back %>:
-    <%= form.text_field :back %>
-  </p>
-
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
-
+<div>Cards:</div>
 <table>
     <tr>
         <th>Front</th>
@@ -22,5 +12,28 @@
         <tr>
             <td><%= card.front %></td>
             <td><%= card.back %></td>
+            <td><%= link_to 'Edit', edit_deck_card_path(@deck.id, card.id)%></td>
+            <td><%= link_to 'Destroy', deck_card_path(@deck.id, card.id),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+        </tr>
     <% end %>
 </table>
+
+<div>New Card:</div>
+<%= form_with(model: [ @deck, @deck.cards.new ], local: true) do |form| %>
+    <p>
+        <%= form.label :front %>:
+        <%= form.text_field :front %>
+    </p>
+    <p>
+        <%= form.label :back %>:
+        <%= form.text_field :back %>
+    </p>
+
+    <p>
+        <%= form.submit %>
+    </p>
+<% end %>
+
+<div><%= link_to 'Home', root_path %></div>

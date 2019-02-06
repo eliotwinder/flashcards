@@ -5,21 +5,31 @@ toggleCard = (cardIndex) ->
     card.hidden = !card.hidden
 
 @nextCard = () ->
-    @currentCardIndex += 1
-
-    if @currentCardIndex == document.deckLength
-        alert 'no more cards'
+    toggleCard(@currentCardIndex)
+    if @currentCardIndex == document.deckLength - 1
+        document.querySelector(".finished").hidden = false
+        document.querySelector(".next").hidden = true
     else
-        toggleCard(@currentCardIndex - 1)
+        @currentCardIndex += 1
         toggleCard(@currentCardIndex)
 
 @revealAnswer = (element) ->
     element.parentElement.querySelector(".back").hidden = false
     element.hidden = true
 
-docReady = () ->
-    @deckLength = Number(document.querySelector('#jsVariables').dataset.decklength)
-    @cards = document.querySelectorAll(".card")
-    @cards[0].hidden = false
+@startOver = () ->
+    for card in document.cards
+        card.hidden = true
+    document.cards[0].hidden = false
+    document.querySelector(".finished").hidden = true
+    document.querySelector(".next").hidden = false
+    @currentCardIndex = 0
 
-document.addEventListener "DOMContentLoaded", docReady
+docReady = () ->
+    jsVariables = document.querySelector('#jsVariables')
+    if jsVariables
+        @deckLength = Number(jsVariables.dataset.decklength)
+        @cards = document.querySelectorAll(".card")
+        @cards[0].hidden = false
+
+document.addEventListener "turbolinks:load", docReady
