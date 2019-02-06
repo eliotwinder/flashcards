@@ -1,0 +1,19 @@
+<p>Study</p>
+<p onclick="nextCard(this)">next card</p>
+
+<% @deck.cards.each do |card, index| %>
+    <div class='card' hidden=true>
+        <div class='front'>
+        Front: <%= card.front %>
+        </div>
+        <div onclick="revealAnswer(this)">
+            Reveal
+        </div>
+        <div class='back' hidden=true>
+            Back: <%= card.back %>
+        </div>
+    </div>
+<% end %>
+
+<%= content_tag :div, '', id: 'jsVariables', data: { deckLength: @deckLength } %>
+

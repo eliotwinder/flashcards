@@ -1,0 +1,26 @@
+<p><%= @deck.title %></p>
+
+<%= form_with(model: [ @deck, @deck.cards.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :front %>:
+    <%= form.text_field :front %>
+    <%= form.label :back %>:
+    <%= form.text_field :back %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
+<table>
+    <tr>
+        <th>Front</th>
+        <th>Back</th>
+    </tr>
+    <% @deck.cards.each do |card| %>
+        <tr>
+            <td><%= card.front %></td>
+            <td><%= card.back %></td>
+    <% end %>
+</table>

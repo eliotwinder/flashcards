@@ -1,0 +1,7 @@
+<h1>So ya wanna learn something?!</h1>
+<%= link_to 'New Deck', new_deck_path %>
+<h2>Saved decks:</h2>
+<% @decks.each do |deck| %>
+    <p><%= link_to deck.title, deck_path(deck) %></p>
+<% end %>
+
